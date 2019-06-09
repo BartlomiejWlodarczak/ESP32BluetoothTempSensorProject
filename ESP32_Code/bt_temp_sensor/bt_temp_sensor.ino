@@ -10,10 +10,8 @@
 int DHTPIN = 4;
 DHT dht(DHTPIN, DHTTYPE);
 
-float temperature;
-float humidity;
-float oldTemperature;
-float oldHumidity;
+int temperature;
+int humidity;
 bool dataChanged = false;
 
 // BLE configuration
@@ -131,16 +129,16 @@ void handleBLEConnection() {
 }
 
 void handleSensorReading() {
-  temperature = dht.readTemperature();
-  humidity = dht.readHumidity();
+  int t = int(dht.readTemperature());
+  int h = int(dht.readHumidity());
 
-  if (isnan(temperature) || isnan(humidity)) {
+  if (isnan(t) || isnan(h)) {
     Serial.println("Failed to read from DHT sensor!");
     return;
-  } else if (temperature != oldTemperature || humidity != oldHumidity)  {
+  } else if (t != temperature || h != humidity)  {
     dataChanged = true;
-    oldTemperature = temperature;
-    oldHumidity = humidity;
+    temperature = t;
+    humidity = h;
     Serial.print("Temperature: ");
     Serial.print(temperature);
     Serial.print("°C ");
