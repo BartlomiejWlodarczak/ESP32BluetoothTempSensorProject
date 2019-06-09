@@ -26,7 +26,7 @@ bool deviceConnected = false;
 bool oldDeviceConnected = false;
 
 #define NOTIFY_DELAY 2000
-#define SERVICE_UUID "d60a24af-0b40-43ac-bd0c-c41d50867684"
+#define SERVICE_UUID BLEUUID((uint16_t)0x9999)
 #define TEMP_UUID BLEUUID((uint16_t)0x2A6E)
 #define HUM_UUID BLEUUID((uint16_t)0x2A6F)
 
